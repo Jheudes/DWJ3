@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" /><!-- -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!--Le Viewport -->
+        <title>Velo en Sueur</title><!--Titre -->
+        <link rel="stylesheet" type="text/css" href="style.css"><!--Liens vers le CSS -->
+        <!--Implementation de Leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+            integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+            crossorigin=""></script>
+        <!--Implementation de Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+        <script src="jquery-3.3.1.js"></script><!--Lien Jquery -->
+        <script src="script.js"></script><!--Lien JS/map -->
+        <script src="canvas.js"></script><!--Lien JS/canvas -->
+        <script src="reservation.js"></script>
+    </head>
+
+    <body>
+        <div id="container">
+            <!--Slider --><!-- -->
+            <div class="row">
+                <div id="sliderjs" class="col-sm-12"></div>
+            </div>
+
+            <!--Block map+infos -->
+            <div id="blockmap" class="row">
+
+                <div id="mapid" class="col-sm-8"></div><!--La map la dedans -->
+                <div id="panneauinfo" class="col-sm-4">
+                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Station N° :&#160</p><p id="number"></p></div>
+                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Nom et Adresse :</p><br /><p id="address"></p></div>
+                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Etat de la Station :&#160</p><p id="status"></p></div>
+                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Taille de la station :&#160</p><p id="bike_stands"></p></div>
+                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Hangars dispo :&#160</p><p id="available_bike_stands"></p></div>
+                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Velos dispo :&#160</p><p id="available_bikes"></p></div>
+                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Derniere M.A.J :&#160</p><p id="last_update"></p></div>
+                    <form id="formulaire">
+                        <label for="prenom">Entrez votre prenom :&#160</label>
+                        <input type="text" name="prenom" id="prenom" Required/><br />
+
+                        <label for="nom">Entrez votre nom :&#160</label>
+                        <input type="text" name="nom" id="nom" Required/><br />
+
+                        <input type="submit" value="Valider" /><br />
+                       
+                        <input id="clickMe" type="button" value="clickme" />
+                        <input id="clickMe2" type="button" value="clickme2" />
+                        <input id="clickMe3" type="button" value="clickme3" />
+                        <input id="clickMe4" type="button" value="clickme4" />
+                    </form>
+                    
+
+                </div>
+            </div>
+
+            <div id="blockresa" class="row">
+                <div id="inforesa0" class="col-sm-6"><p id="demo" class="col-sm-5"> Resa Ici !</p></div>
+                <div id="inforesa1" class="col-sm-6"><p id="tempsresa" class="col-sm-5"> </p></div>
+                <div id="inforesa2" class="col-sm-6"><p id="infoderesa" class="col-sm-5"> </p><p id="oki">oki ici</p><p id="oki4">oki1</p></div>
+                <div id="inforesa3" class="col-sm-6"><p id="sessionstorage" class="col-sm-5"> </p><div id="clockdiv"></div></div>
+            </div>
+        </div>
+    </body>
+</html>

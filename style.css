@@ -1,0 +1,21 @@
+﻿body
+{background-color: #aaa;}
+#mapid{
+    height: 600px;
+    width: 1000px;
+}
+#blockmap{
+    display: flex;
+    height: 600px;
+}
+#panneauinfo {background-color: #bbb;}
+.inpanneauinfo {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 500px;    
+}
+.inpanneauinfo p, div div p {
+    margin: 5px;
+    padding: 0;
+}

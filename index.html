@@ -20,53 +20,77 @@
         <script src="jquery-3.3.1.js"></script><!--Lien Jquery -->
         <script src="script.js"></script><!--Lien JS/map -->
         <script src="canvas.js"></script><!--Lien JS/canvas -->
-        <script src="reservation.js"></script>
+        <script src="reservation.js"></script><!--Lien JS/logique reservation -->
+        <script src="slider.js"></script><!--Lien JS/slider -->
     </head>
 
-    <body>
+    <body class="grey">
         <div id="container">
             <!--Slider --><!-- -->
-            <div class="row">
-                <div id="sliderjs" class="col-sm-12"></div>
-            </div>
+            <ul id="slides" class="row">
+                <li class="slide showing">Slide 1</li>
+                <li class="slide">Slide 2</li>
+                <li class="slide">Slide 3</li>
+                <li class="slide">Slide 4</li>
+                <li class="slide">Slide 5</li>
+            </ul>
 
+            <div id="prevSlide"></div>
+            <div id="nextSlide"></div>
+
+            <div class="grey row">
+                <button class="controls col-sm-1" id="pause">Pause</button>
+            </div>
             <!--Block map+infos -->
             <div id="blockmap" class="row">
 
                 <div id="mapid" class="col-sm-8"></div><!--La map la dedans -->
                 <div id="panneauinfo" class="col-sm-4">
-                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Station N° :&#160</p><p id="number"></p></div>
-                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Nom et Adresse :</p><br /><p id="address"></p></div>
-                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Etat de la Station :&#160</p><p id="status"></p></div>
-                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Taille de la station :&#160</p><p id="bike_stands"></p></div>
-                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Hangars dispo :&#160</p><p id="available_bike_stands"></p></div>
-                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Velos dispo :&#160</p><p id="available_bikes"></p></div>
-                    <div class='inpanneauinfo row'><p class="floatleft col-sm-4">Derniere M.A.J :&#160</p><p id="last_update"></p></div>
-                    <form id="formulaire">
+                    <div class='inpanneauinfo row col-sm-11'><p class="floatleft col-sm-4">Station N° :&#160</p><p id="number"></p></div>
+                    <div class='inpanneauinfo row col-sm-11'><p class="floatleft col-sm-4">Nom et Adresse :</p><br /><p id="address"></p></div>
+                    <div class='inpanneauinfo row col-sm-11'><p class="floatleft col-sm-4">Etat de la Station :&#160</p><p id="status"></p></div>
+                    <div class='inpanneauinfo row col-sm-11'><p class="floatleft col-sm-4">Taille de la station :&#160</p><p id="bike_stands"></p></div>
+                    <div class='inpanneauinfo row col-sm-11'><p class="floatleft col-sm-4">Hangars dispo :&#160</p><p id="available_bike_stands"></p></div>
+                    <div class='inpanneauinfo row col-sm-11'><p class="floatleft col-sm-4">Velos dispo :&#160</p><p id="available_bikes"></p></div>
+                    <div class='inpanneauinfo row col-sm-11'><p class="floatleft col-sm-4">Derniere M.A.J :&#160</p><p id="last_update"></p></div>
+                    <form id="formulaire" class="col-sm-8">
                         <label for="prenom">Entrez votre prenom :&#160</label>
-                        <input type="text" name="prenom" id="prenom" Required/><br />
+                        <input type="text" name="prenom" id="prenom" Required /><br /> <!--value=${name12}-->
 
                         <label for="nom">Entrez votre nom :&#160</label>
-                        <input type="text" name="nom" id="nom" Required/><br />
+                        <input type="text" name="nom" id="nom" Required /><br />
 
-                        <input type="submit" value="Valider" /><br />
-                       
+                        <input type="submit" value="Valider" id="submit" /><br />
+
                         <input id="clickMe" type="button" value="clickme" />
                         <input id="clickMe2" type="button" value="clickme2" />
                         <input id="clickMe3" type="button" value="clickme3" />
                         <input id="clickMe4" type="button" value="clickme4" />
                     </form>
-                    
+
+                    <div>
+
+                        <canvas class="row" id="canvas"></canvas>
+                        <div class="row">
+                            <button class="btn-primary col-sm-4" id="sig-submitBtn">Submit Signature</button>
+                            <button class="btn-default col-sm-4" id="effacer">Effacer Signature</button>
+                        </div>
+                    </div>
 
                 </div>
             </div>
 
-            <div id="blockresa" class="row">
-                <div id="inforesa0" class="col-sm-6"><p id="demo" class="col-sm-5"> Resa Ici !</p></div>
-                <div id="inforesa1" class="col-sm-6"><p id="tempsresa" class="col-sm-5"> </p></div>
-                <div id="inforesa2" class="col-sm-6"><p id="infoderesa" class="col-sm-5"> </p><p id="oki">oki ici</p><p id="oki4">oki1</p></div>
-                <div id="inforesa3" class="col-sm-6"><p id="sessionstorage" class="col-sm-5"> </p><div id="clockdiv"></div></div>
+            <div class="red row">
+                <div class="red col-sm-6">
+                    <p id="infoderesa"> </p>
+                </div>
+
+                <div class="grey col-sm-6">
+                    <p id="clockdiv"> </p>
+                    <p id="clockdiv2"></p>
+                </div>
             </div>
+            
         </div>
     </body>
 </html>

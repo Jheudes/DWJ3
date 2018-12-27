@@ -57,28 +57,53 @@ $(function () {
             //else if (exec != "ok") {clearInterval(timeinterval);}//sinon si le reset a été call il arete la fonction
             else {//sinon il laisse le temps s'ecouler jusque 0 et l'affiche
                 $('#clockdiv').html('La reservation est expirée');
-                ('#clockdiv2').html();
+                $('#clockdiv2').html('');//Vide un paragraphe
                 $('#infoderesa').html('Vous n\'avez plus de reservation en cours');
                 clearInterval(timeinterval);
             }
         }, 1000);
     }
 
-    $('#clickMe').click(function () {
-        sessionStorage.clear();
-        initializeClock();
-    });// lance la fonction au moment du click sur valider
-    $('#clickMe2').click(function oki() { $('#oki').html(sessionStorage.getItem('deadline')); })
-    $('#clickMe3').click(function oki() { sessionStorage.removeItem('deadline'); })
-    $('#clickMe4').click(function oki() { localStorage.removeItem('nom'); localStorage.removeItem('prenom'); })
+    function scrollDown() {
+        window.scrollBy(0, 200);
+    }
+    
     $('#submit').click(function (event) {
         event.preventDefault();
-        var nom = $('#nom').val()
-        var prenom = $('#prenom').val()
-        localStorage.setItem('nom', nom);
-        localStorage.setItem('prenom', prenom);
-        sessionStorage.clear();
-        initializeClock();
+        var chooseStation = document.getElementById("chooseStation");
+        var entrerNom = document.getElementById("enterName");
+        if ($('#number').is(':empty')) { chooseStation.style.display = "block"; }
+        else if ($('#nom').val().length == 0) {
+            chooseStation.style.display = "none";
+            entrerNom.style.display = "block";}
+        else {
+            chooseStation.style.display = "none";
+            entrerNom.style.display = "none";
+            var nom = $('#nom').val();
+            var prenom = $('#prenom').val();
+            localStorage.setItem('nom', nom);
+            localStorage.setItem('prenom', prenom);
+            sessionStorage.clear();
+            var address = $('#address').text();
+            var number = $('#number').text();
+
+            $('#resaWarning').html('Reservation au nom de ' + nom + '\ ' + prenom + '.');
+            $('#resaInfoStation').html('Station N&#176: ' + number + ' Lieu : ' + address + '.');
+            var canvas = document.getElementById("floatinItem");
+            canvas.style.display = "block";
+        }
     })
-     
+    $('#closeCanvas').click(function oki() {
+        var canvas = document.getElementById("floatinItem");
+        canvas.style.display = "none";
+    })
+    $('#sig-submitBtn').click(function () {
+
+        initializeClock();
+        var canvas = document.getElementById("floatinItem");
+        canvas.style.display = "none";
+        setTimeout(scrollDown, 1000);
+        
+    })
+    
 });

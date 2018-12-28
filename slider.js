@@ -1,41 +1,49 @@
 // JavaScript source code
 $(function () {
-    var slides = document.querySelectorAll('#slides .slide');
-    var currentSlide = 0;
-    var slideInterval = setInterval(nextSlide, 5000);
+    var slider = {
+        slides: document.querySelectorAll('#slides .slide'),
+        currentSlide: 0,
+        pauseButton: document.getElementById('pauseButton'),
+        playing: true,
 
-    function nextSlide() {
-        slides[currentSlide].className = 'slide';
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].className = 'slide showing';
-    }
-    function previousSlide() {
-        slides[currentSlide].className = 'slide';
-        currentSlide = (currentSlide + (slides.length - 1)) % slides.length;
-        slides[currentSlide].className = 'slide showing';
-    }
+        nextSlide: function () {
+            this.slides[this.currentSlide].className = 'slide';
+            this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+            this.slides[this.currentSlide].className = 'slide showing';
+        },
+        previousSlide: function () {
+            this.slides[this.currentSlide].className = 'slide';
+            this.currentSlide = (this.currentSlide + (this.slides.length - 1)) % this.slides.length;
+            this.slides[this.currentSlide].className = 'slide showing';
+        },
 
-    var playing = true;
-    var pauseButton = document.getElementById('pauseButton');
 
-    function pauseSlideshow() {
-        pauseButton.innerHTML = 'Play';
-        playing = false;
-        clearInterval(slideInterval);
-    }
+        pauseSlideshow: function () {
+            pauseButton.innerHTML = 'Play';
+            this.playing = false;
+            clearInterval(slideInterval);
+        },
 
-    function playSlideshow() {
-        pauseButton.innerHTML = 'Pause';
-        playing = true;
-        slideInterval = setInterval(nextSlide, 5000);
-    }
+        playSlideshow: function () {
+            pauseButton.innerHTML = 'Pause';
+            this.playing = true;
+        },
+
+    };
+
+
+    var slideInterval = setInterval(function () { slider.nextSlide(); }, 5000);
 
     pauseButton.onclick = function () {
-        if (playing) { pauseSlideshow(); }
-        else { playSlideshow(); }
+        if (slider.playing) { slider.pauseSlideshow(); }
+        else {
+            slider.playSlideshow();
+            slideInterval = setInterval(function () { slider.nextSlide(); }, 5000);
+        }
     };
-    $('#nextSlide').click(nextSlide);
-    $('#prevSlide').click(previousSlide);
+
+    $('#nextSlide').click(function () { slider.nextSlide(); });
+    $('#prevSlide').click(function () { slider.previousSlide(); });
 
     document.onkeydown = checkKey;
 
@@ -44,13 +52,12 @@ $(function () {
         e = e || window.event;
 
         if (e.keyCode == '37') {
-            previousSlide();//left
+            slider.previousSlide();//left
         }
         else if (e.keyCode == '39') {
-            nextSlide();//right
+            slider.nextSlide();//right
         }
-    }
-    
-});
+    };
 
+});
 
